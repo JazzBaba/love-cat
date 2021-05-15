@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { Kittens, LeftMenu } from "./components";
+import { useSelector } from "react-redux";
 
 function App() {
+  const kitten = useSelector(state => state.kitten.data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LeftMenu></LeftMenu>
+      {
+        (kitten.length > 0) ?
+          <div id="main" className="App-header">
+            <Kittens></Kittens>
+          </div>
+          :
+          <header id="main" className="App-header">
+            <h1>Welcome to the kitten world</h1>
+            <h3>Please select a category from left menu</h3>
+          </header>
+
+      }
+
+
     </div>
   );
 }
 
-export default App;
+export default App
